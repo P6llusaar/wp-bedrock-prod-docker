@@ -2,7 +2,7 @@
 
 set -e
 
-zip_filename=$(date +"%Y-%m-%d_%H:%M:%S_backup.zip")
+zip_filename=$(date +"%Y-%m-%d_%H%M%S_backup.zip")
 
 #changing dir to the current script folder
 cd "$(dirname "${BASH_SOURCE[0]}")"
