@@ -13,11 +13,13 @@ docker compose exec -u wpadmin -T bedrock-blue bash -c \
 docker compose cp bedrock-blue:/backup_temp/backup.sql backup_temp/
 docker compose exec bedrock-blue rm /backup_temp/backup.sql
 docker compose cp  bedrock-blue:/var/www/html/bedrock/web/app/uploads backup_temp/
+cp ../.env backup_temp/.env
 
 cd backup_temp
 zip -r "../backups/${zip_filename}" .
 
 
 rm -rf ./*
+rm -rf ./.env
 
 
