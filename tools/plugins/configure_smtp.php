@@ -7,6 +7,8 @@ add_action('phpmailer_init', function($phpmailer) {
     $SMTP_USER = getenv('SMTP_USER');
     $SMTP_PASSWD = getenv('SMTP_PASSWD');
     $SMTP_ENCRYPTION = getenv('SMTP_ENCRYPTION');
+    $SMTP_FROM = getenv('SMTP_FROM');
+    $SMTP_FROM_EMAIL = getenv('SMTP_FROM_EMAIL');
 
     if(empty($SMTP_HOST))
         return;
@@ -33,4 +35,13 @@ add_action('phpmailer_init', function($phpmailer) {
 
     // Encryption (tls or ssl)
     $phpmailer->SMTPSecure = $SMTP_ENCRYPTION;
+
+    if($SMTP_FROM_EMAIL){
+        $phpmailer->From = $SMTP_FROM_EMAIL;
+    }
+
+    if($SMTP_FROM){
+        $phpmailer->FromName = $SMTP_FROM;
+    }
+
 });
