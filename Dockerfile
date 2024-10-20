@@ -39,6 +39,12 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 RUN adduser wpadmin && \
     usermod -aG www-data wpadmin
 
+
+
+COPY tools/plugins/configure_smtp.php /var/www/html/bedrock/web/app/mu-plugins/configure_smtp.php
+
+RUN chown -R www-data:www-data /var/www/html
+
 COPY entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
