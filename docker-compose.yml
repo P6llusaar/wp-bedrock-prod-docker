@@ -5,6 +5,7 @@ services:
       context: .
       args:
         git_url: ${GIT_URL}
+        git_branch: ${DEFAULT_GIT_BRANCH}
     restart: always
     ports:
       - ${BLUE_PORT}:80

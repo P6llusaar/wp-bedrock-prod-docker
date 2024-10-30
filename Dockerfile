@@ -2,6 +2,7 @@
 FROM composer:latest as builder
 
 ARG git_url
+ARG git_branch
 
 WORKDIR /app
 
@@ -9,9 +10,11 @@ COPY .ssh/known_hosts /root/.ssh/known_hosts
 COPY .ssh/ssh_key /root/.ssh/ssh_key
 RUN chmod 700 /root/.ssh && chmod 600 /root/.ssh/ssh_key 
 
+
 RUN eval "$(ssh-agent -s)" && \
     ssh-add /root/.ssh/ssh_key && \
-    git clone "$git_url" bedrock
+    git clone --depth 1 --branch "$git_branch" "$git_url" bedrock
+
 
 WORKDIR /app/bedrock 
 RUN composer install
