@@ -3,6 +3,8 @@
 version=$1
 server_color=$2
 
+set -e
+
 if [ -z "$version" ] || [ -z "$server_color" ]; then
     echo "Error: version and server color need to be set"
     echo "Usage: $0 [version] [blue|green]"
